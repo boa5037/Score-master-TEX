@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-
+DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -22,27 +21,27 @@ body,html{font-family:var(--font);background:var(--bg);color:#fff;width:100%;hei
 #splash.out{opacity:0;pointer-events:none;}
 .splash-ball{font-size:5rem;animation:splashBounce 0.9s ease-in-out infinite;}
 @keyframes splashBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.05)}}
-.splash-title{font-size:2.4rem;font-weight:800;letter-spacing:3px;margin-top:1rem;background:linear-gradient(135deg,var(–accent),var(–secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.splash-title{font-size:2.4rem;font-weight:800;letter-spacing:3px;margin-top:1rem;background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .splash-sub{font-size:0.72rem;letter-spacing:5px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:0.4rem;}
 .splash-bar{width:160px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:2.5rem;overflow:hidden;}
-.splash-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(–accent),var(–secondary));border-radius:2px;transition:width 1.6s ease;}
+.splash-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--secondary));border-radius:2px;transition:width 1.6s ease;}
 
 /* ═══ SETUP ═══ */
 .setup-wrap{display:flex;justify-content:center;align-items:flex-start;min-height:100dvh;padding:20px;overflow-y:auto;background:linear-gradient(135deg,#0f1923,#1a2a3a);}
 .card{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:2rem 1.8rem;border-radius:28px;width:100%;max-width:440px;text-align:center;margin-top:20px;position:relative;}
-h1{font-size:2.1rem;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,var(–accent),var(–secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.2rem;}
+h1{font-size:2.1rem;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.2rem;}
 .sub{font-size:0.7rem;color:rgba(255,255,255,0.35);letter-spacing:4px;text-transform:uppercase;margin-bottom:1.8rem;}
 .hidden{display:none!important;}
 label{display:block;text-align:left;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:5px;}
-input[type=“number”],input[type=“text”],input[type=“password”]{width:100%;padding:13px 15px;margin-bottom:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(–radius);font-size:16px;font-family:var(–font);font-weight:600;color:#fff;outline:none;transition:border-color 0.2s;}
-input:focus{border-color:var(–accent);}
+input[type="number"],input[type="text"],input[type="password"]{width:100%;padding:13px 15px;margin-bottom:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);font-size:16px;font-family:var(--font);font-weight:600;color:#fff;outline:none;transition:border-color 0.2s;}
+input:focus{border-color:var(--accent);}
 input::placeholder{color:rgba(255,255,255,0.3);font-weight:400;}
 input.error{border-color:#e53935!important;animation:shake 0.3s;}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-button{cursor:pointer;border:none;border-radius:var(–radius);padding:15px 20px;font-family:var(–font);font-size:0.93rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin:5px 0;width:100%;transition:transform 0.1s,opacity 0.1s;}
+button{cursor:pointer;border:none;border-radius:var(--radius);padding:15px 20px;font-family:var(--font);font-size:0.93rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin:5px 0;width:100%;transition:transform 0.1s,opacity 0.1s;}
 button:active{transform:scale(0.96);opacity:0.85;}
-.btn-g{background:linear-gradient(135deg,var(–accent),#00c853);color:#0f1923;box-shadow:0 4px 18px rgba(0,230,118,0.35);}
-.btn-b{background:linear-gradient(135deg,var(–secondary),#0288d1);color:#fff;box-shadow:0 4px 18px rgba(41,182,246,0.3);}
+.btn-g{background:linear-gradient(135deg,var(--accent),#00c853);color:#0f1923;box-shadow:0 4px 18px rgba(0,230,118,0.35);}
+.btn-b{background:linear-gradient(135deg,var(--secondary),#0288d1);color:#fff;box-shadow:0 4px 18px rgba(41,182,246,0.3);}
 .btn-r{background:linear-gradient(135deg,#e53935,#b71c1c);color:#fff;box-shadow:0 4px 18px rgba(229,57,53,0.3);}
 .btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);}
 .btn-sm{padding:10px 14px;font-size:0.78rem;}
@@ -54,11 +53,11 @@ button:active{transform:scale(0.96);opacity:0.85;}
 /* ═══ GAME SCREEN - 1v1 ═══ */
 #screen-game{display:flex;width:100vw;height:100dvh;position:fixed;top:0;left:0;z-index:100;}
 .side{flex:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;color:#fff;overflow:hidden;cursor:pointer;}
-.side::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.1) 0%,transparent 65%);pointer-events:none;}
-#s0{background:linear-gradient(160deg,var(–p0-a),var(–p0-b));}
-#s1{background:linear-gradient(160deg,var(–p1-a),var(–p1-b));}
-#s2{background:linear-gradient(160deg,var(–p2-a),var(–p2-b));}
-#s3{background:linear-gradient(160deg,var(–p3-a),var(–p3-b));}
+.side::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.1) 0%,transparent 65%);pointer-events:none;}
+#s0{background:linear-gradient(160deg,var(--p0-a),var(--p0-b));}
+#s1{background:linear-gradient(160deg,var(--p1-a),var(--p1-b));}
+#s2{background:linear-gradient(160deg,var(--p2-a),var(--p2-b));}
+#s3{background:linear-gradient(160deg,var(--p3-a),var(--p3-b));}
 
 .ball-ico{position:absolute;top:5.5%;font-size:clamp(1.8rem,5vw,3rem);filter:drop-shadow(0 3px 8px rgba(0,0,0,0.5));animation:fl 2.5s ease-in-out infinite;}
 @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
@@ -104,9 +103,9 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);display:none;justify-content:center;align-items:center;z-index:2000;}
 .modal.on{display:flex;}
 .mc{background:linear-gradient(160deg,#1a2a3a,#0f1923);border:1px solid rgba(255,255,255,0.12);padding:2rem 1.8rem;border-radius:28px;width:90%;max-width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6);}
-.mc h2{font-size:1.4rem;font-weight:800;letter-spacing:1px;color:var(–accent);margin-bottom:1rem;}
+.mc h2{font-size:1.4rem;font-weight:800;letter-spacing:1px;color:var(--accent);margin-bottom:1rem;}
 .mc p{color:rgba(255,255,255,0.55);font-size:0.88rem;margin-bottom:1rem;line-height:1.5;}
-.win-name{font-size:2.4rem;font-weight:800;color:var(–accent);letter-spacing:2px;margin-bottom:1rem;}
+.win-name{font-size:2.4rem;font-weight:800;color:var(--accent);letter-spacing:2px;margin-bottom:1rem;}
 .stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:0.88rem;}
 .stat-row:last-child{border-bottom:none;}
 .stat-row .lbl{color:rgba(255,255,255,0.45);font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;}
@@ -122,7 +121,7 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .bracket-match .result{font-size:0.75rem;color:rgba(255,255,255,0.5);}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
 .stat-box{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:14px;text-align:left;}
-.stat-val{display:block;font-size:1.7rem;font-weight:800;color:var(–accent);line-height:1;}
+.stat-val{display:block;font-size:1.7rem;font-weight:800;color:var(--accent);line-height:1;}
 .stat-lab{font-size:0.62rem;font-weight:700;letter-spacing:3px;color:rgba(255,255,255,0.38);text-transform:uppercase;}
 .flash{position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0;}
 .flash.go{animation:fla 0.5s ease-out forwards;background:rgba(0,230,118,0.15);}
@@ -132,12 +131,10 @@ button:active{transform:scale(0.96);opacity:0.85;}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:2px;}
 .snd-toggle{position:absolute;bottom:max(16px,env(safe-area-inset-bottom));right:max(16px,env(safe-area-inset-right));width:38px;height:38px;background:rgba(0,0,0,0.28);border:1px solid rgba(255,255,255,0.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;z-index:10;cursor:pointer;}
 </style>
-
 </head>
 <body oncontextmenu="return false;">
 
 <!-- ══ SPLASH ══ -->
-
 <div id="splash">
   <div class="splash-ball">&#127921;</div>
   <div class="splash-title">Billard Score</div>
@@ -146,11 +143,10 @@ button:active{transform:scale(0.96);opacity:0.85;}
 </div>
 
 <!-- ══ SETUP ══ -->
-
 <div class="setup-wrap hidden" id="ui-setup">
 <div class="card">
   <button class="btn-admin" onclick="openM('m-admin-login')">ADMIN</button>
-
+  
   <div id="s-mode">
     <h1>Billard Score</h1><p class="sub">Master Pro</p>
     <button class="btn-g" onclick="setMode('1v1')">&#127921;&nbsp; 1 VS 1</button>
@@ -210,7 +206,6 @@ button:active{transform:scale(0.96);opacity:0.85;}
 </div>
 
 <!-- ══ GAME ══ -->
-
 <div id="screen-game" class="hidden">
   <div class="btn-back-game" onclick="askReset(event,'full')">&#10094;</div>
   <div class="btn-undo-game" onclick="undoLast(event)">&#8617;</div>
@@ -262,11 +257,9 @@ button:active{transform:scale(0.96);opacity:0.85;}
 </div>
 
 <!-- ══ FLASH ══ -->
-
 <div class="flash" id="flash"></div>
 
 <!-- ══ MODALS ══ -->
-
 <div id="m-break" class="modal"><div class="mc">
   <h2>&#127921; Qui casse ?</h2>
   <div id="break-choices"></div>
@@ -674,6 +667,5 @@ window.onload=()=>{
   else{showSplash();}
 };
 </script>
-
 </body>
 </html>
