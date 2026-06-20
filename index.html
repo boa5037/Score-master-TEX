@@ -2,41 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Copy Full Code</title>
-<style>
-body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f1923; color: #fff; padding: 20px; }
-.container { max-width: 600px; margin: 0 auto; }
-h1 { color: #00e676; margin-bottom: 20px; }
-button { width: 100%; padding: 18px; background: linear-gradient(135deg, #00e676, #00c853); color: #0f1923; border: none; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; margin-bottom: 20px; }
-button:active { transform: scale(0.95); }
-textarea { width: 100%; height: 60vh; padding: 20px; background: #1a2a3a; color: #00e676; border: 1px solid #00e676; border-radius: 8px; font-family: monospace; font-size: 12px; }
-.copied { display: none; padding: 12px; background: #00e676; color: #0f1923; border-radius: 8px; text-align: center; font-weight: 700; margin-bottom: 10px; }
-.copied.show { display: block; }
-</style>
-</head>
-<body>
-<div class="container">
-<h1>📋 Copier le code complet</h1>
-<div class="copied" id="copied">✅ Code copié dans le presse-papiers !</div>
-<button onclick="copyCode()">Copier tout le code →</button>
-<textarea id="code" readonly></textarea>
-</div>
-
-<script>
-const fullCode = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Billard Score Pro</title>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"><\/script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"><\/script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"><\/script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"><\/script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix"><\/script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix"></script>
 <style>
 :root {
   --accent:#00e676; --secondary:#29b6f6; --bg:#0f1923; --radius:18px;
@@ -45,12 +19,16 @@ const fullCode = `<!DOCTYPE html>
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;margin:0;padding:0;}
 body,html{font-family:var(--font);background:var(--bg);color:#fff;width:100%;height:100dvh;overflow:hidden;}
+
+/* ═══ SPLASH ═══ */
 #splash{position:fixed;inset:0;background:#0f1923;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.6s ease;}
 #splash.out{opacity:0;pointer-events:none;}
 .splash-ball{font-size:5rem;animation:splashBounce 0.9s ease-in-out infinite;}
 @keyframes splashBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.05)}}
 .splash-title{font-size:2.4rem;font-weight:800;letter-spacing:3px;margin-top:1rem;background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .splash-sub{font-size:0.72rem;letter-spacing:5px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:0.4rem;}
+
+/* ═══ LOGIN ═══ */
 #screen-login{position:fixed;inset:0;background:linear-gradient(135deg,#0f1923,#1a2a3a);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:1000;padding:20px;}
 .login-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:3rem 2rem;border-radius:28px;text-align:center;max-width:400px;}
 .login-card h1{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;}
@@ -58,6 +36,8 @@ body,html{font-family:var(--font);background:var(--bg);color:#fff;width:100%;hei
 .btn-google{background:linear-gradient(135deg,#4285f4,#357ae8);color:#fff;border:none;border-radius:12px;padding:16px 20px;font-size:0.95rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;width:100%;cursor:pointer;transition:transform 0.1s;margin-bottom:1rem;}
 .btn-google:active{transform:scale(0.96);}
 .btn-logout{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 20px;font-size:0.85rem;font-weight:700;width:100%;cursor:pointer;}
+
+/* ═══ SETUP ═══ */
 .setup-wrap{display:flex;justify-content:center;align-items:flex-start;min-height:100dvh;padding:20px;overflow-y:auto;background:linear-gradient(135deg,#0f1923,#1a2a3a);position:relative;}
 .card{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:2rem 1.8rem;border-radius:28px;width:100%;max-width:440px;text-align:center;margin-top:20px;position:relative;}
 h1{font-size:2.1rem;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.2rem;}
@@ -73,7 +53,9 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .btn-b{background:linear-gradient(135deg,var(--secondary),#0288d1);color:#fff;box-shadow:0 4px 18px rgba(41,182,246,0.3);}
 .btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);}
 .btn-sm{padding:10px 14px;font-size:0.78rem;}
+
 .btn-profiles{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.3);border-radius:10px;padding:8px 12px;font-size:0.7rem;font-weight:700;letter-spacing:2px;width:auto;margin:0;border:1px solid rgba(255,255,255,0.08);}
+
 .profile-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px;margin-bottom:10px;text-align:left;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.2s;}
 .profile-item:hover{background:rgba(255,255,255,0.1);}
 .profile-avatar{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--p0-a),var(--p0-b));flex-shrink:0;background-size:cover;background-position:center;}
@@ -81,6 +63,8 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .profile-name{font-weight:700;font-size:0.95rem;}
 .profile-date{font-size:0.75rem;color:rgba(255,255,255,0.4);}
 .profile-delete{width:32px;height:32px;background:rgba(255,107,107,0.2);border:1px solid rgba(255,107,107,0.4);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#ff6b6b;font-size:1.1rem;cursor:pointer;}
+
+/* PARTIE MULTIPLAYER */
 .party-code{font-size:3rem;font-weight:900;letter-spacing:8px;color:var(--accent);text-shadow:0 0 20px rgba(0,230,118,0.5);margin:2rem 0;font-family:monospace;}
 .party-status{font-size:0.9rem;color:rgba(255,255,255,0.5);margin-bottom:1rem;min-height:2.5rem;}
 .party-players{background:rgba(255,255,255,0.05);border-radius:12px;padding:1rem;margin:1rem 0;text-align:left;max-height:150px;overflow-y:auto;}
@@ -89,28 +73,39 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .party-player.ready{color:var(--accent);}
 .party-player::before{content:'●';margin-right:8px;color:rgba(255,255,255,0.3);}
 .party-player.ready::before{color:var(--accent);}
+
+/* ═══ GAME ═══ */
 #screen-game{display:flex;width:100vw;height:100dvh;position:fixed;top:0;left:0;z-index:100;}
 .side{flex:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;color:#fff;overflow:hidden;cursor:pointer;}
 .side::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.1) 0%,transparent 65%);pointer-events:none;}
 #s0{background:linear-gradient(160deg,var(--p0-a),var(--p0-b));}
 #s1{background:linear-gradient(160deg,var(--p1-a),var(--p1-b));}
+
 .leader-bar{position:absolute;top:0;left:0;right:0;height:4px;background:gold;transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
 .side.leading .leader-bar{transform:scaleX(1);}
+
 .p-photo{width:160px;height:160px;border-radius:8px;background:rgba(0,0,0,0.3);border:3px solid;display:flex;align-items:center;justify-content:center;font-size:60px;box-shadow:0 0 40px rgba(0,0,0,0.6), inset 0 0 30px rgba(255,255,255,0.05);position:relative;overflow:hidden;background-size:cover;background-position:center;margin-bottom:1.2vh;}
 #s0 .p-photo{border-color:#00e676;box-shadow:0 0 40px rgba(0,230,118,0.8), 0 0 80px rgba(0,230,118,0.4), inset 0 0 30px rgba(255,255,255,0.1);}
 #s1 .p-photo{border-color:#ff6b6b;box-shadow:0 0 40px rgba(255,107,107,0.8), 0 0 80px rgba(255,107,107,0.4), inset 0 0 30px rgba(255,255,255,0.1);}
+
 .p-name{font-size:clamp(0.8rem,4vw,2rem);font-weight:800;letter-spacing:2px;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,0.3);margin-bottom:0.6vh;}
 .p-score{font-size:clamp(4rem,18vw,13rem);font-weight:800;line-height:0.82;text-shadow:0 6px 24px rgba(0,0,0,0.4);letter-spacing:-4px;}
 .p-score.pop{animation:pop 0.22s ease-out;}
 @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.13)}100%{transform:scale(1)}}
 .p-sets{font-size:clamp(0.5rem,1.5vw,0.8rem);font-weight:700;letter-spacing:3px;text-transform:uppercase;background:rgba(0,0,0,0.28);padding:4px 14px;border-radius:20px;margin-top:1.2vh;}
+
 .btn-minus{position:absolute;bottom:8%;width:48px;height:48px;background:rgba(0,0,0,0.28);border-radius:50%;border:2px solid rgba(255,255,255,0.28);display:flex;justify-content:center;align-items:center;font-size:1.8rem;font-weight:300;z-index:5;}
 .btn-minus:active{background:rgba(0,0,0,0.55);}
+
 .divider{position:absolute;top:0;left:50%;transform:translateX(-50%);width:3px;height:100%;background:rgba(255,255,255,0.13);pointer-events:none;}
+
 .btn-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.93);border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 18px rgba(0,0,0,0.4);z-index:10;font-size:1.5rem;cursor:pointer;color:#333;}
 .btn-center:active{transform:translate(-50%,-50%) scale(0.91);}
+
 .btn-back-game{position:absolute;top:max(16px,env(safe-area-inset-top));left:max(16px,env(safe-area-inset-left));width:44px;height:44px;background:rgba(0,0,0,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;opacity:0.8;z-index:10;cursor:pointer;}
 .btn-back-game:active{background:rgba(0,0,0,0.55);}
+
+/* ═══ NOTIFICATIONS ═══ */
 .notification{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);border:2px solid var(--accent);border-radius:20px;padding:2rem;text-align:center;z-index:3000;max-width:90%;min-width:280px;}
 .notif-title{font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;color:var(--accent);}
 .notif-msg{font-size:0.95rem;color:rgba(255,255,255,0.8);margin-bottom:1.5rem;}
@@ -118,6 +113,8 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .notif-btn{flex:1;padding:12px 16px;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;}
 .notif-btn.confirm{background:var(--accent);color:#0f1923;}
 .notif-btn.cancel{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);}
+
+/* ═══ MODALS ═══ */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);display:none;justify-content:center;align-items:center;z-index:2000;}
 .modal.on{display:flex;}
 .mc{background:linear-gradient(160deg,#1a2a3a,#0f1923);border:1px solid rgba(255,255,255,0.12);padding:2rem 1.8rem;border-radius:28px;width:90%;max-width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6);}
@@ -126,136 +123,143 @@ button:active{transform:scale(0.96);opacity:0.85;}
 .loading{text-align:center;color:rgba(255,255,255,0.5);}
 .spinner{display:inline-block;width:30px;height:30px;border:3px solid rgba(0,230,118,0.3);border-top:3px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite;}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-<\/style>
-<\/head>
+</style>
+</head>
 <body oncontextmenu="return false;">
 
+<!-- ══ SPLASH ══ -->
 <div id="splash">
-  <div class="splash-ball">&#127921;<\/div>
-  <div class="splash-title">Billard Score<\/div>
-  <div class="splash-sub">Master Pro<\/div>
-<\/div>
+  <div class="splash-ball">&#127921;</div>
+  <div class="splash-title">Billard Score</div>
+  <div class="splash-sub">Master Pro</div>
+</div>
 
+<!-- ══ LOGIN ══ -->
 <div id="screen-login">
   <div class="login-card">
-    <h1>Billard Score<\/h1>
-    <p>Se connecter avec Google pour synchroniser les profils et jouer en multiplayer<\/p>
-    <button class="btn-google" onclick="loginGoogle()">🔐 Se connecter avec Google<\/button>
-    <button class="btn-logout" id="logout-btn" style="display:none;" onclick="logoutUser()">Déconnexion<\/button>
-    <div id="user-info" style="display:none;margin-top:1rem;text-align:left;color:rgba(255,255,255,0.6);font-size:0.85rem;"><\/div>
-  <\/div>
-<\/div>
+    <h1>Billard Score</h1>
+    <p>Se connecter avec Google pour synchroniser les profils et jouer en multiplayer</p>
+    <button class="btn-google" onclick="loginGoogle()">🔐 Se connecter avec Google</button>
+    <button class="btn-logout" id="logout-btn" style="display:none;" onclick="logoutUser()">Déconnexion</button>
+    <div id="user-info" style="display:none;margin-top:1rem;text-align:left;color:rgba(255,255,255,0.6);font-size:0.85rem;"></div>
+  </div>
+</div>
 
+<!-- ══ SETUP ══ -->
 <div class="setup-wrap hidden" id="ui-setup">
 <div class="card">
-  <button class="btn-profiles" onclick="openM('m-profiles')">👤 PROFILS<\/button>
+  <button class="btn-profiles" onclick="openM('m-profiles')">👤 PROFILS</button>
   
   <div id="s-mode">
-    <h1>Billard Score<\/h1><p class="sub">Master Pro<\/p>
-    <button class="btn-g" onclick="setMode('1v1')">&#127921;&nbsp; 1 VS 1<\/button>
-    <button class="btn-b" onclick="setMode('multi')" style="margin-top:4px">&#128101;&nbsp; Multiplayer<\/button>
-  <\/div>
+    <h1>Billard Score</h1><p class="sub">Master Pro</p>
+    <button class="btn-g" onclick="setMode('1v1')">&#127921;&nbsp; 1 VS 1</button>
+    <button class="btn-b" onclick="setMode('multi')" style="margin-top:4px">&#128101;&nbsp; Multiplayer</button>
+  </div>
 
   <div id="s-multi" class="hidden">
-    <h1>Multiplayer<\/h1><p class="sub">Créer ou rejoindre<\/p>
-    <button class="btn-g" onclick="createParty()">➕ Créer une partie<\/button>
-    <button class="btn-b" onclick="showJoinParty()" style="margin-top:4px">🔗 Rejoindre<\/button>
-    <button class="btn-ghost" onclick="goBack('s-mode','s-multi')" style="margin-top:4px">&larr; Retour<\/button>
-  <\/div>
+    <h1>Multiplayer</h1><p class="sub">Créer ou rejoindre</p>
+    <button class="btn-g" onclick="createParty()">➕ Créer une partie</button>
+    <button class="btn-b" onclick="showJoinParty()" style="margin-top:4px">🔗 Rejoindre</button>
+    <button class="btn-ghost" onclick="goBack('s-mode','s-multi')" style="margin-top:4px">&larr; Retour</button>
+  </div>
 
   <div id="s-create-party" class="hidden">
-    <h1>Nouvelle partie<\/h1><p class="sub">Configuration<\/p>
-    <label>Nom de la partie<\/label>
+    <h1>Nouvelle partie</h1><p class="sub">Configuration</p>
+    <label>Nom de la partie</label>
     <input type="text" id="party-name" placeholder="Ex: Match TEX vs JESY" maxlength="30">
-    <label>Type<\/label>
+    <label>Type</label>
     <div style="display:flex;gap:8px;margin-bottom:16px;">
-      <button class="btn-b btn-sm" style="flex:1;margin:0;" onclick="setPartyType('1v1')">1 VS 1<\/button>
-      <button class="btn-b btn-sm" style="flex:1;margin:0;" onclick="setPartyType('doublette')">Doublette<\/button>
-    <\/div>
-    <label>Points par SET<\/label>
+      <button class="btn-b btn-sm" style="flex:1;margin:0;" onclick="setPartyType('1v1')">1 VS 1</button>
+      <button class="btn-b btn-sm" style="flex:1;margin:0;" onclick="setPartyType('doublette')">Doublette</button>
+    </div>
+    <label>Points par SET</label>
     <input type="number" id="party-goal" value="7" inputmode="numeric" min="1" max="99">
-    <button class="btn-g" onclick="confirmCreateParty()">Créer &rarr;<\/button>
-    <button class="btn-ghost" onclick="goBack('s-multi','s-create-party')" style="margin-top:4px">&larr; Retour<\/button>
-  <\/div>
+    <button class="btn-g" onclick="confirmCreateParty()">Créer &rarr;</button>
+    <button class="btn-ghost" onclick="goBack('s-multi','s-create-party')" style="margin-top:4px">&larr; Retour</button>
+  </div>
 
   <div id="s-wait-party" class="hidden">
-    <h1>En attente<\/h1><p class="sub" id="party-name-display"><\/p>
-    <p class="party-code" id="party-code-display">0000<\/p>
-    <p class="party-status">Partage ce code avec les autres joueurs<\/p>
-    <div class="party-players" id="party-players-list"><\/div>
-    <button class="btn-g" id="start-party-btn" style="display:none;" onclick="startParty()">Lancer la partie ▶<\/button>
-    <button class="btn-ghost" onclick="cancelParty()" style="margin-top:4px">Annuler<\/button>
-  <\/div>
+    <h1>En attente</h1><p class="sub" id="party-name-display"></p>
+    <p class="party-code" id="party-code-display">0000</p>
+    <p class="party-status">Partage ce code avec les autres joueurs</p>
+    <div class="party-players" id="party-players-list"></div>
+    <button class="btn-g" id="start-party-btn" style="display:none;" onclick="startParty()">Lancer la partie ▶</button>
+    <button class="btn-ghost" onclick="cancelParty()" style="margin-top:4px">Annuler</button>
+  </div>
 
   <div id="s-join-party" class="hidden">
-    <h1>Rejoindre<\/h1><p class="sub">Code à 4 chiffres<\/p>
+    <h1>Rejoindre</h1><p class="sub">Code à 4 chiffres</p>
     <input type="text" id="join-code" placeholder="0000" inputmode="numeric" maxlength="4" style="text-align:center;font-size:2rem;letter-spacing:8px;">
-    <button class="btn-g" onclick="joinParty()">Rejoindre &rarr;<\/button>
-    <button class="btn-ghost" onclick="goBack('s-multi','s-join-party')" style="margin-top:4px">&larr; Retour<\/button>
-  <\/div>
+    <button class="btn-g" onclick="joinParty()">Rejoindre &rarr;</button>
+    <button class="btn-ghost" onclick="goBack('s-multi','s-join-party')" style="margin-top:4px">&larr; Retour</button>
+  </div>
 
   <div id="s-profiles" class="hidden">
-    <h1>Profils<\/h1><p class="sub">Gérer vos profils<\/p>
-    <div id="profiles-list" style="max-height:300px;overflow-y:auto;margin-bottom:12px;"><\/div>
-    <button class="btn-g btn-sm" onclick="openNewProfile()">➕ Nouveau profil<\/button>
-    <button class="btn-ghost" onclick="closeM('m-profiles')" style="margin-top:6px">Fermer<\/button>
-  <\/div>
+    <h1>Profils</h1><p class="sub">Gérer vos profils</p>
+    <div id="profiles-list" style="max-height:300px;overflow-y:auto;margin-bottom:12px;"></div>
+    <button class="btn-g btn-sm" onclick="openNewProfile()">➕ Nouveau profil</button>
+    <button class="btn-ghost" onclick="closeM('m-profiles')" style="margin-top:6px">Fermer</button>
+  </div>
 
   <div id="s-new-profile" class="hidden">
-    <h1>Nouveau profil<\/h1><p class="sub">Nom + Photo<\/p>
-    <label>Nom du joueur<\/label>
+    <h1>Nouveau profil</h1><p class="sub">Nom + Photo</p>
+    <label>Nom du joueur</label>
     <input type="text" id="profile-name" placeholder="Votre nom" maxlength="16">
-    <label>Photo du joueur<\/label>
+    <label>Photo du joueur</label>
     <input type="file" id="profile-photo" accept="image/*" capture="environment">
-    <div id="profile-preview" style="width:100%;height:120px;background:rgba(255,255,255,0.05);border:2px dashed rgba(255,255,255,0.2);border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);background-size:cover;background-position:center;">Aucune photo<\/div>
+    <div id="profile-preview" style="width:100%;height:120px;background:rgba(255,255,255,0.05);border:2px dashed rgba(255,255,255,0.2);border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);background-size:cover;background-position:center;">Aucune photo</div>
     <div class="loading" id="profile-processing" style="display:none;margin-bottom:12px;">
-      <div class="spinner"><\/div>
-      <p>Traitement de la photo...<\/p>
-    <\/div>
-    <button class="btn-g" id="save-profile-btn" onclick="saveProfile()">Sauvegarder<\/button>
-    <button class="btn-ghost" onclick="goBack('s-profiles','s-new-profile')" style="margin-top:6px">&larr; Retour<\/button>
-  <\/div>
-<\/div>
-<\/div>
+      <div class="spinner"></div>
+      <p>Traitement de la photo...</p>
+    </div>
+    <button class="btn-g" id="save-profile-btn" onclick="saveProfile()">Sauvegarder</button>
+    <button class="btn-ghost" onclick="goBack('s-profiles','s-new-profile')" style="margin-top:6px">&larr; Retour</button>
+  </div>
+</div>
+</div>
 
+<!-- ══ GAME ══ -->
 <div id="screen-game" class="hidden">
-  <div class="btn-back-game" onclick="endGame()">&#10094;<\/div>
+  <div class="btn-back-game" onclick="endGame()">&#10094;</div>
 
   <div class="side" id="s0" onclick="requestAddPoint(0)">
-    <div class="leader-bar"><\/div>
-    <div class="p-photo" id="photo-0">📷<\/div>
-    <div class="p-name" id="name-0">Joueur 1<\/div>
-    <div class="p-score" id="score-0">0<\/div>
-    <div class="p-sets" id="sets-0">SET: 0<\/div>
-    <div class="btn-minus" onclick="requestRemovePoint(0,event)">&#8722;<\/div>
-  <\/div>
+    <div class="leader-bar"></div>
+    <div class="p-photo" id="photo-0">📷</div>
+    <div class="p-name" id="name-0">Joueur 1</div>
+    <div class="p-score" id="score-0">0</div>
+    <div class="p-sets" id="sets-0">SET: 0</div>
+    <div class="btn-minus" onclick="requestRemovePoint(0,event)">&#8722;</div>
+  </div>
 
-  <div class="divider"><\/div>
+  <div class="divider"></div>
 
   <div class="side" id="s1" onclick="requestAddPoint(1)">
-    <div class="leader-bar"><\/div>
-    <div class="p-photo" id="photo-1">📷<\/div>
-    <div class="p-name" id="name-1">Joueur 2<\/div>
-    <div class="p-score" id="score-1">0<\/div>
-    <div class="p-sets" id="sets-1">SET: 0<\/div>
-    <div class="btn-minus" onclick="requestRemovePoint(1,event)">&#8722;<\/div>
-  <\/div>
+    <div class="leader-bar"></div>
+    <div class="p-photo" id="photo-1">📷</div>
+    <div class="p-name" id="name-1">Joueur 2</div>
+    <div class="p-score" id="score-1">0</div>
+    <div class="p-sets" id="sets-1">SET: 0</div>
+    <div class="btn-minus" onclick="requestRemovePoint(1,event)">&#8722;</div>
+  </div>
 
-  <div class="btn-center" onclick="resetSet()">&#8635;<\/div>
-<\/div>
+  <div class="btn-center" onclick="resetSet()">&#8635;</div>
+</div>
 
+<!-- ══ MODALS ══ -->
 <div id="m-profiles" class="modal"><div class="mc" style="max-width:380px;max-height:80vh;overflow-y:auto;">
-  <h2>👤 Profils<\/h2>
-  <div id="m-profiles-content"><\/div>
-<\/div><\/div>
+  <h2>👤 Profils</h2>
+  <div id="m-profiles-content"></div>
+</div></div>
 
+<!-- ══ NOTIFICATION ══ -->
 <div id="notification" class="notification hidden">
-  <div class="notif-title" id="notif-title"><\/div>
-  <div class="notif-msg" id="notif-msg"><\/div>
-  <div class="notif-buttons" id="notif-buttons"><\/div>
-<\/div>
+  <div class="notif-title" id="notif-title"></div>
+  <div class="notif-msg" id="notif-msg"></div>
+  <div class="notif-buttons" id="notif-buttons"></div>
+</div>
 
 <script>
+/* ══════════ FIREBASE CONFIG ══════════ */
 const firebaseConfig = {
   apiKey: "AIzaSyB4rkELVhl9goZOQ-cZQ0qtflrH6Z2KgtQ",
   authDomain: "tex-score-ce9ca.firebaseapp.com",
@@ -280,7 +284,7 @@ async function initFirebase() {
         showScreen('ui-setup');
         document.getElementById('screen-login').style.display = 'none';
         document.getElementById('user-info').style.display = 'block';
-        document.getElementById('user-info').innerHTML = \`Connecté: <strong>\${user.displayName || user.email}<\/strong>\`;
+        document.getElementById('user-info').innerHTML = `Connecté: <strong>${user.displayName || user.email}</strong>`;
         document.getElementById('logout-btn').style.display = 'block';
       } else {
         showScreen('screen-login');
@@ -304,6 +308,7 @@ function logoutUser() {
   auth.signOut();
 }
 
+/* ══════════ UI HELPERS ══════════ */
 function show(id) { document.getElementById(id).classList.remove('hidden'); }
 function hide(id) { document.getElementById(id).classList.add('hidden'); }
 function showScreen(id) { document.getElementById(id).style.display = 'flex'; }
@@ -327,12 +332,13 @@ function notify(title, msg, buttons) {
   el.classList.remove('hidden');
 }
 
+/* ══════════ PROFILS ══════════ */
 let profiles = [];
 let currentProfilePhoto = null;
 
 async function loadProfiles() {
   if (!currentUser) return;
-  const ref = db.ref(\`profiles/\${currentUser.uid}\`);
+  const ref = db.ref(`profiles/${currentUser.uid}`);
   ref.on('value', snap => {
     profiles = snap.val() || [];
     renderProfilesList();
@@ -341,16 +347,16 @@ async function loadProfiles() {
 
 function renderProfilesList() {
   const list = document.getElementById('profiles-list') || document.getElementById('m-profiles-content');
-  list.innerHTML = profiles.map(p => \`
+  list.innerHTML = profiles.map(p => `
     <div class="profile-item">
-      <div class="profile-avatar" style="background-image:url(\${p.photo})"><\/div>
+      <div class="profile-avatar" style="background-image:url(${p.photo})"></div>
       <div class="profile-info">
-        <div class="profile-name">\${p.name}<\/div>
-        <div class="profile-date">\${new Date(p.createdAt).toLocaleDateString('fr-FR')}<\/div>
-      <\/div>
-      <div class="profile-delete" onclick="deleteProfile('\${p.id}')">✕<\/div>
-    <\/div>
-  \`).join('');
+        <div class="profile-name">${p.name}</div>
+        <div class="profile-date">${new Date(p.createdAt).toLocaleDateString('fr-FR')}</div>
+      </div>
+      <div class="profile-delete" onclick="deleteProfile('${p.id}')">✕</div>
+    </div>
+  `).join('');
 }
 
 function openNewProfile() {
@@ -368,7 +374,7 @@ document.getElementById('profile-photo')?.addEventListener('change', async (e) =
   document.getElementById('profile-processing').style.display = 'block';
   currentProfilePhoto = await processPhotoWithBodyPix(file);
   document.getElementById('profile-processing').style.display = 'none';
-  document.getElementById('profile-preview').style.backgroundImage = \`url(\${currentProfilePhoto})\`;
+  document.getElementById('profile-preview').style.backgroundImage = `url(${currentProfilePhoto})`;
   document.getElementById('profile-preview').innerHTML = '';
 });
 
@@ -383,14 +389,17 @@ async function processPhotoWithBodyPix(file) {
         canvas.height = 160;
         const ctx = canvas.getContext('2d');
         
+        // Crop et redimensionner
         const size = Math.min(img.width, img.height);
         const startX = (img.width - size) / 2;
         const startY = (img.height - size) / 2;
         ctx.drawImage(img, startX, startY, size, size, 0, 0, 160, 160);
         
+        // Filtres avancés
         ctx.filter = 'contrast(1.25) brightness(1.1) saturate(1.2) hue-rotate(0deg)';
         ctx.drawImage(canvas, 0, 0);
         
+        // Vignette et glow
         const gradient = ctx.createRadialGradient(80, 80, 30, 80, 80, 120);
         gradient.addColorStop(0, 'rgba(255,255,255,0)');
         gradient.addColorStop(1, 'rgba(0,0,0,0.3)');
@@ -420,7 +429,7 @@ async function saveProfile() {
     createdAt: new Date().toISOString()
   };
   
-  await db.ref(\`profiles/\${currentUser.uid}/\${profile.id}\`).set(profile);
+  await db.ref(`profiles/${currentUser.uid}/${profile.id}`).set(profile);
   alert('Profil sauvegardé !');
   document.getElementById('s-new-profile').classList.add('hidden');
   document.getElementById('s-profiles').classList.remove('hidden');
@@ -428,9 +437,10 @@ async function saveProfile() {
 
 async function deleteProfile(id) {
   if (!confirm('Supprimer ce profil ?')) return;
-  await db.ref(\`profiles/\${currentUser.uid}/\${id}\`).remove();
+  await db.ref(`profiles/${currentUser.uid}/${id}`).remove();
 }
 
+/* ══════════ MULTIPLAYER ══════════ */
 let partyType = '1v1', partyGoal = 7;
 
 function setMode(m) {
@@ -466,7 +476,7 @@ async function confirmCreateParty() {
     status: 'waiting'
   };
   
-  partyRef = db.ref(\`parties/\${code}\`);
+  partyRef = db.ref(`parties/${code}`);
   await partyRef.set(party);
   currentParty = { code, ...party };
   
@@ -479,7 +489,7 @@ async function confirmCreateParty() {
     if (snap.exists()) {
       const data = snap.val();
       const list = document.getElementById('party-players-list');
-      list.innerHTML = (data.players || []).map(p => \`<div class="party-player \${p.ready?'ready':''}\">🎱 \${p.name}<\/div>\`).join('');
+      list.innerHTML = (data.players || []).map(p => `<div class="party-player ${p.ready?'ready':''}">🎱 ${p.name}</div>`).join('');
       if (data.players.length > 1) {
         document.getElementById('start-party-btn').style.display = 'block';
       }
@@ -497,14 +507,14 @@ async function joinParty() {
   if (code.length !== 4) return alert('Code invalide');
   
   try {
-    const snap = await db.ref(\`parties/\${code}\`).once('value');
+    const snap = await db.ref(`parties/${code}`).once('value');
     if (!snap.exists()) return alert('Partie introuvable');
     
     const party = snap.val();
     party.code = code;
     currentParty = party;
     
-    await db.ref(\`parties/\${code}/players\`).push({
+    await db.ref(`parties/${code}/players`).push({
       uid: currentUser.uid,
       name: currentUser.displayName || 'Joueur',
       ready: true
@@ -515,12 +525,12 @@ async function joinParty() {
     document.getElementById('party-name-display').textContent = party.name;
     document.getElementById('party-code-display').textContent = code;
     
-    partyRef = db.ref(\`parties/\${code}\`);
+    partyRef = db.ref(`parties/${code}`);
     partyRef.on('value', (snap) => {
       if (snap.exists()) {
         const data = snap.val();
         const list = document.getElementById('party-players-list');
-        list.innerHTML = (data.players || []).map(p => \`<div class="party-player \${p.ready?'ready':''}\">🎱 \${p.name}<\/div>\`).join('');
+        list.innerHTML = (data.players || []).map(p => `<div class="party-player ${p.ready?'ready':''}">🎱 ${p.name}</div>`).join('');
         if (data.status === 'playing') startParty();
       }
     });
@@ -531,11 +541,11 @@ async function joinParty() {
 
 async function startParty() {
   if (currentParty.createdBy !== currentUser.uid) {
-    alert('Seul l\\'initiateur peut lancer la partie');
+    alert('Seul l\'initiateur peut lancer la partie');
     return;
   }
   
-  await db.ref(\`parties/\${currentParty.code}\`).update({ status: 'playing' });
+  await db.ref(`parties/${currentParty.code}`).update({ status: 'playing' });
   startGame();
 }
 
@@ -544,11 +554,12 @@ function cancelParty() {
   document.getElementById('s-wait-party').classList.add('hidden');
   document.getElementById('s-multi').classList.remove('hidden');
   if (currentParty.createdBy === currentUser.uid) {
-    db.ref(\`parties/\${currentParty.code}\`).remove();
+    db.ref(`parties/${currentParty.code}`).remove();
   }
   currentParty = null;
 }
 
+/* ══════════ GAMEPLAY ══════════ */
 let gameMode = 'multi', gamePlayers = [], gameScore = [0, 0], gameSets = [0, 0];
 
 async function startGame() {
@@ -566,18 +577,18 @@ async function startGame() {
 function renderGame() {
   gamePlayers.forEach((p, i) => {
     const profile = profiles.find(pr => pr.name === p.name);
-    document.getElementById(\`photo-\${i}\`).style.backgroundImage = profile ? \`url(\${profile.photo})\` : '';
-    document.getElementById(\`photo-\${i}\`).textContent = profile ? '' : '📷';
-    document.getElementById(\`name-\${i}\`).textContent = p.name;
-    document.getElementById(\`score-\${i}\`).textContent = gameScore[i];
-    document.getElementById(\`sets-\${i}\`).textContent = \`SET: \${gameSets[i]}\`;
+    document.getElementById(`photo-${i}`).style.backgroundImage = profile ? `url(${profile.photo})` : '';
+    document.getElementById(`photo-${i}`).textContent = profile ? '' : '📷';
+    document.getElementById(`name-${i}`).textContent = p.name;
+    document.getElementById(`score-${i}`).textContent = gameScore[i];
+    document.getElementById(`sets-${i}`).textContent = `SET: ${gameSets[i]}`;
   });
 }
 
 function requestAddPoint(index) {
   if (gameMode === 'multi' && currentParty) {
     notify(
-      \`\${gamePlayers[index].name} demande +1 point\`,
+      `${gamePlayers[index].name} demande +1 point`,
       'Confirmez cette action',
       [
         { text: 'Confirmer', class: 'confirm', onClick: () => { closeNotif(); addPoint(index); } },
@@ -635,6 +646,7 @@ function closeNotif() {
   document.getElementById('notification').classList.add('hidden');
 }
 
+/* ══════════ INIT ══════════ */
 window.onload = () => {
   document.getElementById('splash').classList.add('out');
   setTimeout(() => {
@@ -643,19 +655,6 @@ window.onload = () => {
     document.getElementById('splash').style.display = 'none';
   }, 1800);
 };
-<\/script>
-<\/body>
-<\/html>`;
-
-document.getElementById('code').textContent = fullCode;
-
-function copyCode() {
-  const textarea = document.getElementById('code');
-  textarea.select();
-  document.execCommand('copy');
-  document.getElementById('copied').classList.add('show');
-  setTimeout(() => document.getElementById('copied').classList.remove('show'), 2000);
-}
 </script>
 </body>
 </html>
